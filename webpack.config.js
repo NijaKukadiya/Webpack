@@ -31,6 +31,12 @@ module.exports = {
                 },
             ]
         },
+        externals: {
+            // global app config object
+            config: JSON.stringify({
+                apiUrl: 'http://localhost:3010'
+            })
+        },
         plugins: [new MiniCssExtractPlugin()],
         // plugins: [new HtmlWebpackPlugin({
         //     template: './src/index.html'
