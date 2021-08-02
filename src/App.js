@@ -8,9 +8,8 @@ import { connect } from 'react-redux';
 import { HomePage } from './HomePage';
 import { LoginPage } from "./LoginPage";
 import { RegisterPage } from "./RegisterPage";
-import {Header} from "./Header";
 import {Footer} from "./Footer";
-import { Slider } from "./Slider";
+import { Contact } from "./Contact";
 
 
 class App extends React.Component{
@@ -26,7 +25,6 @@ class App extends React.Component{
         const { alert } = this.props;
         return(
                 <div>
-                    <Header />
                         {alert.message &&
                             <div className={`alert ${alert.type}`}>{alert.message}</div>
                         }
@@ -34,9 +32,9 @@ class App extends React.Component{
                         <Router history={history}>
                             <Switch>
                                 <PrivateRoute exact path="/" component={HomePage} />
-                                <Route path="/slider" component={Slider} />
                                 <Route path="/login" component={LoginPage} />
                                 <Route path="/register" component={RegisterPage} />
+                                <Route path="/contact" component={Contact} />
                                 <Redirect from="*" to="/" />
                             </Switch>
                         </Router>
