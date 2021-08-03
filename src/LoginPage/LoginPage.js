@@ -1,14 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {userActions} from '../actions';
+import {userActions,isLoggedIn } from '../actions';
+import { history } from '../helpers';
 
 class LoginPage extends React.Component {
     constructor(props) {
         super(props);
 
         
-        this.props.logout();
+        // this.props.logout();
 
         this.state = {
             username: '',
@@ -18,6 +19,14 @@ class LoginPage extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    componentDidMount(){
+        if (isLoggedIn()) {
+            history.push('/');
+        }
+        else {
+            this.props.logout();
+        }
     }
 
     handleChange(e) {
@@ -33,15 +42,14 @@ class LoginPage extends React.Component {
         if (username && password) {
             this.props.login(username, password);
         }
-    }
+    };
 
     render() {
         const { loggingIn } = this.props;
         const { username, password, submitted } = this.state;
+       
         return (
             <div>
-                
-            
             {/* <!-- Login Start --> */}
             <div className="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
                 <div className="container py-5">
@@ -84,7 +92,6 @@ class LoginPage extends React.Component {
                 </div>
             </div>
             {/* <!-- Login End --> */}
-
             </div>
         );
     }

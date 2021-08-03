@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { userActions } from '../actions';
 import {Slider} from '../Slider';
 import {Header} from "../Header";
+
 
 class HomePage extends React.Component {
     componentDidMount() {
@@ -14,6 +14,7 @@ class HomePage extends React.Component {
     }
     render() {
         const { user, users } = this.props;
+        
         return (
                 <div>
                     <Header />
@@ -24,7 +25,7 @@ class HomePage extends React.Component {
                             <div className="col-lg-7">
                                 <div className="section-title position-relative pb-3 mb-5">
                                     <h5 className="fw-bold text-primary text-uppercase">Home</h5>
-                                    <h1 className="mb-0">Hi {user.firstName}!</h1>
+                                    <h1 className="mb-0">Hi {user && user.firstName}!</h1>
                                     <h3 className="mb-0">you're logged in with React!!</h3>
                                     <h2 className="mb-0">All registered users:</h2>
                                 </div>
