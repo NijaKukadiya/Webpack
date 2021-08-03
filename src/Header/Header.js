@@ -1,7 +1,9 @@
 
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import {userActions } from '../actions';
 
-export class Header extends Component {
+class Header extends Component {
     render() {
         return (
             <div>
@@ -42,7 +44,7 @@ export class Header extends Component {
                     <div className="navbar-nav ms-auto py-0">
                         <a href="/" className="nav-item nav-link">Home</a>
                         <a href="/contact" className="nav-item nav-link">Contact</a>
-                        <a href="/login" className="nav-item nav-link">Logout</a>
+                        <a className="nav-item nav-link" href="/login" onClick={this.props.logout}> Logout</a>
                     </div>
                 </div>
             </nav>
@@ -52,5 +54,15 @@ export class Header extends Component {
         );
     }
 }
+function mapState(state) {
+    const { loggingIn } = state.authentication;
+    return { loggingIn };
+ }
 
-export default Header;
+ const actionCreators = {
+    login: userActions.login,
+    logout: userActions.logout
+ };
+
+ const connectedHeader = connect(mapState, actionCreators)(Header);
+ export { connectedHeader as Header };

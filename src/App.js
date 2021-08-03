@@ -11,7 +11,6 @@ import { RegisterPage } from "./RegisterPage";
 import {Footer} from "./Footer";
 import { Contact } from "./Contact";
 
-
 class App extends React.Component{
     constructor(props){
         super(props);
@@ -34,7 +33,7 @@ class App extends React.Component{
                                 <PrivateRoute exact path="/" component={HomePage} />
                                 <Route path="/login" component={LoginPage} />
                                 <Route path="/register" component={RegisterPage} />
-                                <Route path="/contact" component={Contact} />
+                                <PrivateRoute path="/contact" component={Contact} />
                                 <Redirect from="*" to="/" />
                             </Switch>
                         </Router>
